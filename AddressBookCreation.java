@@ -1,9 +1,9 @@
 package AddressBook;
 
-
+import java.util.*;
 public class AddressBookCreation {
 
-	//instance variable
+	//instance variables
 	private String first_name;
 	private String last_name;
 	private String address;
@@ -13,7 +13,7 @@ public class AddressBookCreation {
 	private String phone_number;
 	private String email;
 	
-	//Constructors 
+	//Constructors
 	public AddressBookCreation(String first_name,String last_name,String address,String city,String state,String zip,String phone_number,String email)
 	{
 		this.first_name=first_name;
@@ -37,10 +37,46 @@ public class AddressBookCreation {
 		System.out.println("phone number"+phone_number);
 		System.out.println("E-mail:"+email);
 	}
+	
+	
 	public static void main(String[] args) {
 		System.out.println("Welcome to adress book program"); 
-		AddressBookCreation obj=new AddressBookCreation("Al","Ziy","Ziyan Manzil","Mangalore","karnataka","575xxx","1234567890","xyz@gmail.com");	//object creation
-		obj.display(); //display the address book
+		Scanner sc=new Scanner(System.in);
+		AddressBookCreation[] contact=new AddressBookCreation[10];  //Array to store different contacts in address book
+		System.out.println("Number of contacts to be added:");
+		int n=sc.nextInt();
+		System.out.println("Enter the details of person");
+		String fname,lname,address,city,state,zip,pno,email;
+		
+		for(int i=1;i<=n;i++) //loop to add n contacts
+		{
+			System.out.println("first Name:");
+			fname=sc.next();
+			System.out.println("last name:");
+			lname=sc.next();
+			System.out.println("address:");
+			address=sc.next();
+			System.out.println("city:");
+			city=sc.next();
+			System.out.println("state:");
+			state=sc.next();
+			System.out.println("zip:");
+			zip=sc.next();
+			System.out.println("phone number");
+			pno=sc.next();
+			System.out.println("E-mail:");
+			email=sc.next();
+			contact[i]=new AddressBookCreation(fname,lname,address,city,state,zip,pno,email);	//object creation
+			
+		}
+		System.out.println("Details of the addressbook");
+		for(int i=1;i<=n;i++)
+		{
+			System.out.println("Details of "+i+"st person");
+			contact[i].display(); //display the address book
+			
+		}
+		
 	}
 
 }
