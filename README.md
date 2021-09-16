@@ -1,2 +1,2 @@
 # AddressBook
-Address book to save avrious contacts
+Address book to save various contacts
