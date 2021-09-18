@@ -1,7 +1,9 @@
 package AddressBook;
 
-
+import java.util.*;
+import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.Map;
 import java.util.Scanner;
 
 public class MultipleAddressBook {
@@ -35,16 +37,16 @@ public class MultipleAddressBook {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Scanner sc=new Scanner(System.in);
-		Hashtable<String,AddressBookCreation>  multipleAddressBook = new Hashtable<String, AddressBookCreation>();  //dictionary for mapping different address book with key 
-		AddressBookCreation address_book=new AddressBookCreation();					//first address book object
+		Map<String,AddressBookCreation>  multipleAddressBook = new HashMap<String, AddressBookCreation>();  //dictionary for mapping different address book with key 
+		AddressBookCreation addressbook=new AddressBookCreation();					//first address book object
 		
 		String n="";
-		String k="AddressBook1";
-		multipleAddressBook.put(k, address_book);							//put the first address book into dictionary
+		String k="Book1";
+		multipleAddressBook.put(k, addressbook);							//put the first address book into dictionary
 		
 		while(true)
 		{
-			System.out.println("Enter your choice\n1.add contact\n2.edit contact\n3.Delete contact\n4.Display contact\n5.Display addressbook\n6.Create another address book\n7.exit"); //options for different actions
+			System.out.println("Enter your choice\n1.add contact\n2.edit contact\n3.Delete contact\n4.Display contact\n5.Display addressbook\n6.Create another address book\n7.exit\n8.seach people from same place"); //options for different actions
 			int choice=sc.nextInt();
 			if(choice==6)  //to create a new address book
 			{
@@ -56,6 +58,18 @@ public class MultipleAddressBook {
 			}
 			else if(choice==7)				//to exist from the program
 				System.exit(0);
+			else if(choice==8)
+			{
+			    System.out.println("Enter the name of city or state");
+			    String place=sc.next();
+			    System.out.println("Persons whose state or city is "+place);
+			    for(Map.Entry<String, AddressBookCreation> entry : multipleAddressBook.entrySet())
+			    {
+			        AddressBookCreation object1=entry.getValue();
+			        object1.search(place);
+			    }
+			      
+			}
 			else
 			{
 				System.out.println("Enter the addressbook where you want to insert or modify the  contact!!");
@@ -63,5 +77,6 @@ public class MultipleAddressBook {
 				choice(choice,multipleAddressBook.get(n));   //to perform required operation on desired address book
 			}		
 		}
+		
 	}
 }

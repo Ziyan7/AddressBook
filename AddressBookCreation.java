@@ -1,13 +1,15 @@
 package AddressBook;
 
+import java.util.*;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.function.Predicate;
 
 public class AddressBookCreation {
-	public ArrayList<AddressBookCreation> person = new ArrayList<AddressBookCreation>(); 		// collection class
-																								// array list is used to
-																								// store objects of
-																								// address book
+	public ArrayList<AddressBookCreation> person = new ArrayList<AddressBookCreation>(); // collection class
+																							// array list is used to
+																							// store objects of
+																							// address book
 
 	public static Scanner sc = new Scanner(System.in);
 	// Instance variables
@@ -41,7 +43,7 @@ public class AddressBookCreation {
 	public void insertContact() {
 		System.out.println("first Name:");
 		firstname = sc.next();
-		check(firstname);
+		check(firstname); // to check for existing contacts
 		if (check(firstname) == true) {
 			System.out.println("last name:");
 			lastname = sc.next();
@@ -65,8 +67,9 @@ public class AddressBookCreation {
 
 	}
 
+	// method to check if first name already exist
 	public boolean check(String firstname) {
-		for (AddressBookCreation name : person) {
+		for (AddressBookCreation name : person) { // check each adressbook
 			if (name.firstname.equals(firstname)) {
 				return false;
 			}
@@ -161,5 +164,18 @@ public class AddressBookCreation {
 
 			}
 		}
+	}
+
+	public void search(String place) {
+
+        for (int j=0;j<person.size();j++)
+        {   
+            AddressBookCreation object=person.get(j);
+            if(object.city.equals(place)||object.state.equals(place))
+            {
+                System.out.println(object.firstname+" "+object.lastname);  
+            }
+        }
+
 	}
 }
