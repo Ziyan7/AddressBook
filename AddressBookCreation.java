@@ -2,6 +2,7 @@ package AddressBook;
 
 import java.util.*;
 import java.util.function.Predicate;
+import java.util.stream.*;
 
 public class AddressBookCreation {
 	public ArrayList<AddressBookCreation> person = new ArrayList<AddressBookCreation>(); // collection class
@@ -199,12 +200,26 @@ public class AddressBookCreation {
 			for(int i=0; i< person.size();i++) {
 				AddressBookCreation contact = person.get(i);
 				stateMap.put(contact.firstname, contact.state);
-				
 				}
 			for (Map.Entry check : stateMap.entrySet()) {
 				if(check.getValue().equals(state)) {
 					System.out.println(check.getKey());
 				}
 			}
+		}
+		
+		
+		//@method to sort the entries based on person's name using java stream
+		public void sortByName() {
+			List<AddressBookCreation> sortedNames = new ArrayList<AddressBookCreation>();
+			sortedNames = person.stream()
+								.sorted(Comparator.comparing(a -> a.firstname))
+								.collect(Collectors.toList());
+			
+			sortedNames.forEach(n -> System.out.println(n));
+		}
+		
+		public String toString() {
+			return "Firstname: "+firstname+"\n"+"Lastname: "+lastname+"\n"+"Address: "+address+"\n"+"City :"+city+"\n"+"State: "+state;
 		}
 }

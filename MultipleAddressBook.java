@@ -46,7 +46,7 @@ public class MultipleAddressBook {
 		
 		while(true)
 		{
-			System.out.println("Enter your choice\n1.add contact\n2.edit contact\n3.Delete contact\n4.Display contact\n5.Display addressbook\n6.Create another address book\n7.Search and count people from same place\n8.Search person by city name\n9.Search person by state name\n10.exit"); //options for different actions
+			System.out.println("Enter your choice\n1.add contact\n2.edit contact\n3.Delete contact\n4.Display contact\n5.Display addressbook\n6.Create another address book\n7.Search and count people from same place\n8.Search person by city name\n9.Search person by state name\n10.Sort names alphabetically\n11.exit"); //options for different actions
 			int choice=sc.nextInt();
 			if(choice==6)  //to create a new address book
 			{
@@ -92,7 +92,18 @@ public class MultipleAddressBook {
 			        object1.viewPersonByState(state);
 			    }   
 			}
-			else if(choice==10)				//to exist from the program
+			
+			else if(choice==10)
+			{
+				int count=0;
+			    for(Map.Entry<String, AddressBookCreation> entry : multipleAddressBook.entrySet())
+			    {
+			        AddressBookCreation temp=entry.getValue();
+			        System.out.println("AddressBook "+(++count)+" details:");
+			        temp.sortByName();
+			    }  
+			}
+			else if(choice==11)				//to exist from the program
 				System.exit(0);
 			else
 			{
