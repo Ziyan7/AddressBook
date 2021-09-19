@@ -166,40 +166,44 @@ public class AddressBookCreation {
 	
 	//@method to search people belonging to same city or state
 	public void search(String place) {
+		int count = 0;
         for (int j=0;j<person.size();j++)
         {   
             AddressBookCreation contact=person.get(j);
             if(contact.city.equals(place)||contact.state.equals(place))
             {
-                System.out.println(contact.firstname+" "+contact.lastname);  
+                System.out.println(contact.firstname+" "+contact.lastname); 
+                count ++;
+            
             }
         }
+        System.out.println("Number of people belonging to same place are : "+count);
 	}
 	
 	//method to view person by city name
 		public void viewPersonByCity(String city) {
 			Map<String , String> stateMap = new HashMap<String, String>();
-			for(int i=1; i<= person.size();i++) {
+			for(int i=0; i< person.size();i++) {
 				AddressBookCreation contact = person.get(i);
 				stateMap.put(contact.firstname, contact.city);
-				for (Map.Entry check : stateMap.entrySet()) {
-					if(check.getValue().equals(city)) {
-						System.out.println(check.getKey());
-					}
+				}
+			for (Map.Entry check : stateMap.entrySet()) {
+				if(check.getValue().equals(city)) {
+					System.out.println(check.getKey());
 				}
 			}
 		}
-		
 		//method to view person by state name
 		public void viewPersonByState(String state) {
 			Map<String , String> stateMap = new HashMap<String, String>();
-			for(int i=1; i<= person.size();i++) {
+			for(int i=0; i< person.size();i++) {
 				AddressBookCreation contact = person.get(i);
 				stateMap.put(contact.firstname, contact.state);
-				for (Map.Entry check : stateMap.entrySet()) {
-					if(check.getValue().equals(state)) {
-						System.out.println(check.getKey());
-					}
+				
+				}
+			for (Map.Entry check : stateMap.entrySet()) {
+				if(check.getValue().equals(state)) {
+					System.out.println(check.getKey());
 				}
 			}
 		}

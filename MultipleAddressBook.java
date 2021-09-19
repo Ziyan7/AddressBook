@@ -46,7 +46,7 @@ public class MultipleAddressBook {
 		
 		while(true)
 		{
-			System.out.println("Enter your choice\n1.add contact\n2.edit contact\n3.Delete contact\n4.Display contact\n5.Display addressbook\n6.Create another address book\n7.Search people from same place\n8.Search person by city name\n9.Search person by state name\n10.exit"); //options for different actions
+			System.out.println("Enter your choice\n1.add contact\n2.edit contact\n3.Delete contact\n4.Display contact\n5.Display addressbook\n6.Create another address book\n7.Search and count people from same place\n8.Search person by city name\n9.Search person by state name\n10.exit"); //options for different actions
 			int choice=sc.nextInt();
 			if(choice==6)  //to create a new address book
 			{
@@ -71,7 +71,7 @@ public class MultipleAddressBook {
 			
 			else if(choice==8)
 			{
-			    System.out.println("Enter the name of city or state");
+			    System.out.println("Enter the name of the city");
 			    String city=sc.next();
 			    System.out.println("Person belonging to this city is "+city);
 			    for(Map.Entry<String, AddressBookCreation> entry : multipleAddressBook.entrySet())
@@ -83,9 +83,9 @@ public class MultipleAddressBook {
 			
 			else if(choice==9)
 			{
-			    System.out.println("Enter the name of the city ");
+			    System.out.println("Enter the name of the state ");
 			    String state=sc.next();
-			    System.out.println("Person belonging to this city is "+state);
+			    System.out.println("Person belonging to this state is "+state);
 			    for(Map.Entry<String, AddressBookCreation> entry : multipleAddressBook.entrySet())
 			    {
 			        AddressBookCreation object1=entry.getValue();
