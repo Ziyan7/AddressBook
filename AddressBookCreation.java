@@ -219,6 +219,25 @@ public class AddressBookCreation {
 			sortedNames.forEach(n -> System.out.println(n));
 		}
 		
+		//method to sort entries by city state or zip
+		public void sortByCityStateZip(int choice) {
+			List<AddressBookCreation> sorted = new ArrayList<AddressBookCreation>();
+			
+			if(choice == 1) {
+				sorted = person.stream()
+						.sorted(Comparator.comparing(a -> a.city))
+						.collect(Collectors.toList());
+			}else if(choice == 2) {
+				sorted = person.stream()
+						.sorted(Comparator.comparing(a -> a.state))
+						.collect(Collectors.toList());
+			}else {
+				sorted = person.stream()
+						.sorted(Comparator.comparing(a -> a.zip))
+						.collect(Collectors.toList());
+			}
+			sorted.forEach(n -> System.out.println(n));
+		}
 		public String toString() {
 			return "Firstname: "+firstname+"\n"+"Lastname: "+lastname+"\n"+"Address: "+address+"\n"+"City :"+city+"\n"+"State: "+state;
 		}
