@@ -1,17 +1,19 @@
 package AddressBook;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.*;
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.Map;
-import java.util.Scanner;
 
 public class MultipleAddressBook {
 	
 	/*@method to perform some operation 
 	 * takes choice and specific address book object as parameters
 	 */
-	public static  void choice(int choice,AddressBookCreation object)
+	public static  void choice(int choice,AddressBookCreation object) throws IOException
 	{
 			switch(choice)
 			{
@@ -34,7 +36,7 @@ public class MultipleAddressBook {
 			
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException  {
 		// TODO Auto-generated method stub
 		Scanner sc=new Scanner(System.in);
 		Map<String,AddressBookCreation>  multipleAddressBook = new HashMap<String, AddressBookCreation>();  //dictionary for mapping different address book with key 
@@ -46,7 +48,7 @@ public class MultipleAddressBook {
 		
 		while(true)
 		{
-			System.out.println("Enter your choice\n1.add contact\n2.edit contact\n3.Delete contact\n4.Display contact\n5.Display addressbook\n6.Create another address book\n7.Search and count people from same place\n8.Search person by city name\n9.Search person by state name\n10.Sort names alphabetically\n11.Sort by City/State or zip\n12.exit"); //options for different actions
+			System.out.println("Enter your choice\n1.add contact\n2.edit contact\n3.Delete contact\n4.Display contact\n5.Display addressbook\n6.Create another address book\n7.Search and count people from same place\n8.Search person by city name\n9.Search person by state name\n10.Sort names alphabetically\n11.Sort by City/State or zip\n12.Write to the file \n13.Read from the file \n14.exit"); //options for different actions
 			int choice=sc.nextInt();
 			if(choice==6)  //to create a new address book
 			{
@@ -118,7 +120,28 @@ public class MultipleAddressBook {
 			        tempObject.sortByCityStateZip(option);
 			    }  
 			}
-			else if(choice==12)				//to exist from the program
+			else if(choice==12) {
+				System.out.println("Enter the addressbook name:");
+				String addressbookName= sc.next();
+				AddressBookCreation addressbookWriteFile = multipleAddressBook.get(addressbookName);
+				addressbookWriteFile.addToFile();
+			}
+			else if(choice==13) {	
+				String path = "C:\\Users\\abdul.ziyan_ymediala\\eclipse-workspace\\testingex\\src\\AddressBook\\addbook.txt";
+				try {
+					
+					File contact = new File(path);
+					Scanner person = new Scanner(contact);
+					while(person.hasNextLine()) {
+						System.out.println(person.nextLine());
+					}
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+			else if(choice==14)				//to exist from the program
 				System.exit(0);
 			else
 			{

@@ -1,5 +1,12 @@
 package AddressBook;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.*;
@@ -9,7 +16,6 @@ public class AddressBookCreation {
 																							// array list is used to
 																							// store objects of
 																							// address book
-
 	public static Scanner sc = new Scanner(System.in);
 	// Instance variables
 	private String firstname;
@@ -39,7 +45,8 @@ public class AddressBookCreation {
 	}
 
 	// @method to insert person details to specific address book
-	public void insertContact() {
+	public void insertContact() throws IOException {
+		
 		System.out.println("first Name:");
 		firstname = sc.next();
 		check(firstname); // to check for existing contacts
@@ -59,7 +66,6 @@ public class AddressBookCreation {
 			System.out.println("E-mail:");
 			email = sc.next();
 			person.add(new AddressBookCreation(firstname, lastname, address, city, state, zip, phone_number, email)); // object
-																														// creation
 		} else {
 			System.out.println("this contact already exist");
 		}
@@ -238,6 +244,21 @@ public class AddressBookCreation {
 			}
 			sorted.forEach(n -> System.out.println(n));
 		}
+		
+		public void addToFile() throws IOException  {
+			FileWriter fos = new FileWriter("C:\\Users\\abdul.ziyan_ymediala\\eclipse-workspace\\testingex\\src\\AddressBook\\addbook.txt",true);
+			person.forEach(value -> {
+				try {
+					fos.write("Firstname: "+value.firstname+"\n"+"Lastname: "+value.lastname+"\n"+"Address: "+value.address+"\n"+"City :"+value.city+"\n"+"State:"+value.state);
+					//System.out.println("Firstname: "+value.firstname+"\n"+"Lastname: "+value.lastname+"\n"+"Address: "+value.address+"\n"+"City :"+value.city+"\n"+"State:"+value.state);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			});
+			fos.close();
+			
+		}
+		
 		public String toString() {
 			return "Firstname: "+firstname+"\n"+"Lastname: "+lastname+"\n"+"Address: "+address+"\n"+"City :"+city+"\n"+"State: "+state;
 		}
